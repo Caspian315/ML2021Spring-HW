@@ -35,6 +35,14 @@ HW02-1 是语音音素分类任务，需要用 TIMIT 资料中的 frame-level ac
 - 用 training / validation accuracy 和 loss 判断模型是否过拟合
 - 在 Colab 中使用 GPU 跑较大规模训练
 
+个人感悟：
+
+HW02-1 做完之后最大的感受是，深度学习作业里“知道思路”和“真正写出能跑的 PyTorch 代码”之间还有一段距离。模型结构本身并不复杂，但数据切分、label 类型、`DataLoader`、device、loss、accuracy 这些细节只要有一个没对上，训练就会直接报错。
+
+这次也第一次比较直观地看到过拟合：训练集 accuracy 一直上涨、training loss 一直下降，但 validation accuracy 到一定程度后不再提升，validation loss 反而变高。这个现象比单纯看公式更有冲击力，也让我意识到 validation set 的作用不是摆设，而是判断模型有没有真的学到可泛化规律。
+
+目前 HW02-1 还只是一个基础版本，后续可以继续尝试 dropout、weight decay、early stopping、learning rate scheduler 等方法，看看能不能在不过拟合的前提下继续提高 validation accuracy。
+
 ## HW03 Overview
 
 HW03 是 Food-11 食物图片分类任务，需要用 CNN 预测图片对应的 11 种食物类别。相比 HW01 和 HW02-1，这一题开始真正处理图像数据：输入不再是整理好的表格或 `.npy` 特征，而是原始图片，因此需要同时关注图片读取、数据增强、卷积网络结构、验证集表现和 Kaggle submission。
@@ -51,11 +59,7 @@ HW03 是 Food-11 食物图片分类任务，需要用 CNN 预测图片对应的 
 - 初步尝试用 unlabeled data 和 pseudo-label 做半监督学习
 - 在 Colab 中处理 `DataLoader`、`num_workers` 和 GPU 训练稳定性问题
 
-## Personal Notes
-
-HW02-1 做完之后最大的感受是，深度学习作业里“知道思路”和“真正写出能跑的 PyTorch 代码”之间还有一段距离。模型结构本身并不复杂，但数据切分、label 类型、`DataLoader`、device、loss、accuracy 这些细节只要有一个没对上，训练就会直接报错。
-
-这次也第一次比较直观地看到过拟合：训练集 accuracy 一直上涨、training loss 一直下降，但 validation accuracy 到一定程度后不再提升，validation loss 反而变高。这个现象比单纯看公式更有冲击力，也让我意识到 validation set 的作用不是摆设，而是判断模型有没有真的学到可泛化规律。
+个人感悟：
 
 HW03 给我的感受更强烈：深度学习不是把模型写出来就结束了，真正麻烦的是让训练流程稳定跑完，并且让 validation accuracy 真的提升。baseline 跑了很久，training accuracy 可以接近 100%，但 validation accuracy 只有 50% 左右，这让我很直观地看到 CNN 很容易记住训练集，而不一定学到能泛化到新图片的特征。
 
@@ -65,7 +69,7 @@ HW03 给我的感受更强烈：深度学习不是把模型写出来就结束了
 
 所以 HW03 最大的收获是：提升模型效果不是单靠训练更久或者模型更大，而是要观察训练集和验证集之间的差距，再有针对性地调整数据增强、正则化、checkpoint 和半监督策略。
 
-目前 HW02-1 和 HW03 都还只是学习过程中的基础版本，后续可以继续尝试 dropout、weight decay、early stopping、learning rate scheduler、best checkpoint 和更稳的 pseudo-label 策略，看看能不能在不过拟合的前提下继续提高 validation accuracy。
+目前 HW03 还只是学习过程中的基础版本，后续可以继续尝试 dropout、weight decay、early stopping、learning rate scheduler、best checkpoint 和更稳的 pseudo-label 策略，看看能不能在不过拟合的前提下继续提高 validation accuracy。
 
 ## How to Run
 
