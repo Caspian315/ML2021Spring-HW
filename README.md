@@ -35,7 +35,6 @@ HW02-1 是语音音素分类任务，需要用 TIMIT 资料中的 frame-level ac
 - 用 training / validation accuracy 和 loss 判断模型是否过拟合
 - 在 Colab 中使用 GPU 跑较大规模训练
 
-个人感悟：
 
 HW02-1 做完之后最大的感受是，深度学习作业里“知道思路”和“真正写出能跑的 PyTorch 代码”之间还有一段距离。模型结构本身并不复杂，但数据切分、label 类型、`DataLoader`、device、loss、accuracy 这些细节只要有一个没对上，训练就会直接报错。
 
@@ -59,7 +58,6 @@ HW03 是 Food-11 食物图片分类任务，需要用 CNN 预测图片对应的 
 - 初步尝试用 unlabeled data 和 pseudo-label 做半监督学习
 - 在 Colab 中处理 `DataLoader`、`num_workers` 和 GPU 训练稳定性问题
 
-个人感悟：
 
 HW03 给我的感受更强烈：深度学习不是把模型写出来就结束了，真正麻烦的是让训练流程稳定跑完，并且让 validation accuracy 真的提升。baseline 跑了很久，training accuracy 可以接近 100%，但 validation accuracy 只有 50% 左右，这让我很直观地看到 CNN 很容易记住训练集，而不一定学到能泛化到新图片的特征。
 
